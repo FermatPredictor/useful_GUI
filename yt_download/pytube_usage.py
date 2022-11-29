@@ -25,7 +25,7 @@ def download_list(yt_list, path = './', audio_only=False):
             yt_fi = yt.streams.filter()
             loader = yt_fi.get_highest_resolution() if not audio_only else yt_fi.get_audio_only()
             ext = 'mp4' if not audio_only else 'mp3'
-            name = re.sub('[:/]','',yt.title) # 去除特殊字元
+            name = re.sub('[:/|]','',yt.title) # 去除特殊字元
             loader.download(output_path=path, filename=f'{name}.{ext}')
         except Exception as e:
             print(f'第{i}個影片下載失敗: {e}')
